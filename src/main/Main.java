@@ -5,6 +5,7 @@ import controller.JPaintController;
 import model.dialogs.DialogProvider;
 import model.interfaces.IDialogProvider;
 import model.persistence.ApplicationState;
+import model.mouseHandler.MouseHandler;
 import view.gui.Gui;
 import view.gui.GuiWindow;
 import view.gui.PaintCanvas;
@@ -13,10 +14,14 @@ import view.interfaces.IUiModule;
 
 public class Main {
     public static void main(String[] args){
-        IGuiWindow guiWindow = new GuiWindow(new PaintCanvas());
+        PaintCanvas canvas = new PaintCanvas();
+        IGuiWindow guiWindow = new GuiWindow(canvas);
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);
         IJPaintController controller = new JPaintController(uiModule, appState);
         controller.setup();
+
+        MouseHandler mouseHandler = new MouseHandler();
+        ((GuiWindow) guiWindow).addMouseListener(mouseHandler);
     }
 }
