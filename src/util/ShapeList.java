@@ -1,8 +1,8 @@
 package util;
 
-import model.IShape;
+import model.Shape;
 import java.util.ArrayList;
 
-public class ShapeList extends ArrayList<IShape> {
+public class ShapeList extends ArrayList<Shape> {
     //
 }

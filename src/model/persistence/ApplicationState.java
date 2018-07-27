@@ -75,6 +75,12 @@ public class ApplicationState implements IApplicationState {
         return activeStartAndEndPointMode;
     }
 
+    @Override
+    public ShapeConfiguration getCurrentConfiguration() {
+        return new ShapeConfiguration(activePrimaryColor, activeSecondaryColor, activeShapeShadingType,
+                activeShapeType);
+    }
+
     private void setDefaults() {
         activeShapeType = ShapeType.ELLIPSE;
         activePrimaryColor = ShapeColor.BLUE;

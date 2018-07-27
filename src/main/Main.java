@@ -6,6 +6,7 @@ import model.dialogs.DialogProvider;
 import model.interfaces.IDialogProvider;
 import model.persistence.ApplicationState;
 import model.mouseHandler.MouseHandler;
+import util.ShapeList;
 import view.gui.Gui;
 import view.gui.GuiWindow;
 import view.gui.PaintCanvas;
@@ -21,7 +22,8 @@ public class Main {
         IJPaintController controller = new JPaintController(uiModule, appState);
         controller.setup();
 
-        MouseHandler mouseHandler = new MouseHandler();
+        ShapeList shapeList = new ShapeList();
+        MouseHandler mouseHandler = new MouseHandler(appState, shapeList);
         ((GuiWindow) guiWindow).addMouseListener(mouseHandler);
     }
 }
