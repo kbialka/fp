@@ -1,6 +1,6 @@
-package util;
+package model.util;
 
-import model.Shape;
+import model.shape.Shape;
 import model.interfaces.IObserver;
 import model.interfaces.ISubject;
 import java.util.ArrayList;

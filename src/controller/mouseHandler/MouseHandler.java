@@ -1,16 +1,16 @@
-package model.mouseHandler;
+package controller.mouseHandler;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
-import model.Shape;
-import model.StartAndEndPointMode;
+import model.shape.Shape;
+import model.shape.featureEnums.StartAndEndPointMode;
 import model.commands.CreateShapeCommand;
 import model.interfaces.ICommand;
-import util.Pair;
+import model.util.Pair;
 import model.interfaces.IApplicationState;
-import util.ShapeList;
+import model.util.ShapeList;
 
 public class MouseHandler extends MouseAdapter {
     private IApplicationState appState;

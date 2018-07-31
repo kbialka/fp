@@ -2,12 +2,10 @@ package main;
 
 import controller.IJPaintController;
 import controller.JPaintController;
-import model.dialogs.DialogProvider;
-import model.interfaces.IDialogProvider;
 import model.observers.ShapeDrawer;
 import model.persistence.ApplicationState;
-import model.mouseHandler.MouseHandler;
-import util.ShapeList;
+import controller.mouseHandler.MouseHandler;
+import model.util.ShapeList;
 import view.gui.Gui;
 import view.gui.GuiWindow;
 import view.gui.PaintCanvas;
@@ -29,7 +27,6 @@ public class Main {
         ((GuiWindow) guiWindow).addMouseListener(mouseHandler);
 
         // register observers with shapeList
-        // DRAWER probably needs a canvas passed
         ShapeDrawer drawer = new ShapeDrawer(canvas);
         shapeList.registerObservers(drawer);
 

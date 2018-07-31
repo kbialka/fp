@@ -1,9 +1,9 @@
 package model.interfaces;
 
-import model.ShapeColor;
-import model.ShapeShadingType;
-import model.ShapeType;
-import model.StartAndEndPointMode;
+import model.shape.featureEnums.ShapeColor;
+import model.shape.featureEnums.ShapeShadingType;
+import model.shape.featureEnums.ShapeType;
+import model.shape.featureEnums.StartAndEndPointMode;
 import model.persistence.ShapeConfiguration;
 
 public interface IApplicationState {

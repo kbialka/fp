@@ -1,6 +1,6 @@
 package model.interfaces;
 
-import util.ShapeList;
+import model.util.ShapeList;
 
 public interface IObserver {
     void update(ShapeList shapeList);

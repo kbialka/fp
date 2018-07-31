@@ -1,9 +1,9 @@
 package model.observers;
 
-import model.Shape;
-import model.ShapeType;
+import model.shape.Shape;
+import model.shape.featureEnums.ShapeType;
 import model.interfaces.IObserver;
-import util.ShapeList;
+import model.util.ShapeList;
 import view.gui.PaintCanvas;
 
 import java.awt.*;

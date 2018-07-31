@@ -1,11 +1,14 @@
-package model;
+package model.shape;
 
 import model.persistence.ShapeConfiguration;
-import util.Pair;
+import model.shape.featureEnums.ShapeColor;
+import model.shape.featureEnums.ShapeShadingType;
+import model.shape.featureEnums.ShapeType;
+import model.util.Pair;
 
 public class Shape {
-    public Pair start;
-    public Pair end;
+    private Pair start;
+    private Pair end;
     private ShapeColor primary;
     private ShapeColor secondary;
     private ShapeShadingType fill;

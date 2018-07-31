@@ -1,8 +1,8 @@
 package model.persistence;
 
-import model.ShapeColor;
-import model.ShapeShadingType;
-import model.ShapeType;
+import model.shape.featureEnums.ShapeColor;
+import model.shape.featureEnums.ShapeShadingType;
+import model.shape.featureEnums.ShapeType;
 
 public class ShapeConfiguration {
     private ShapeColor primary;

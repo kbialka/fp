@@ -1,8 +1,8 @@
 package model.commands;
 
-import model.Shape;
+import model.shape.Shape;
 import model.interfaces.ICommand;
-import util.ShapeList;
+import model.util.ShapeList;
 
 import java.io.IOException;
 
