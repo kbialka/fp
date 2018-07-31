@@ -1,28 +1,22 @@
 package util;
 
 public class Pair {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     public Pair(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
+    // hard coded values so values align with mouse pointer
     public int getX() {
-        return x;
+        return x - 6;
     }
 
+    // hard coded values so values align with mouse pointer
     public int getY() {
-        return y;
+        return y - 67;
     }
 
     @Override

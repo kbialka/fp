@@ -2,20 +2,56 @@ package model.mouseHandler;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+
+import model.Shape;
+import model.StartAndEndPointMode;
+import model.commands.CreateShapeCommand;
+import model.interfaces.ICommand;
 import util.Pair;
+import model.interfaces.IApplicationState;
+import util.ShapeList;
 
 public class MouseHandler extends MouseAdapter {
+    private IApplicationState appState;
+    private Pair start;
+    private ShapeList shapeList;
+
+    public MouseHandler(IApplicationState appState, ShapeList shapeList) {
+        this.appState = appState;
+        this.shapeList = shapeList;
+    }
+
     @Override
     public void mousePressed(MouseEvent e) {
-        Pair start = new Pair(e.getX(), e.getY());
-        // currently just printing - remove later
-        System.out.println(start);
+        this.start = new Pair(e.getX(), e.getY());
+        System.out.println();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         Pair end = new Pair(e.getX(), e.getY());
-        // currently just printing - generate shape later
-        System.out.println(end);
+        System.out.println();
+
+        // this will create the commends
+        ICommand command;
+
+        if (appState.getActiveStartAndEndPointMode() == StartAndEndPointMode.DRAW) {
+            // draw test
+            command = new CreateShapeCommand(new Shape(start, end, appState.getCurrentConfiguration()), shapeList);
+            // MOVE THIS OUT OF BRANCH ONCE BELOW ARE IMPLEMENTED
+            try {
+                command.run();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        } else if (appState.getActiveStartAndEndPointMode() == StartAndEndPointMode.MOVE) {
+            System.out.println("Move test");
+        } else {
+            System.out.println("Select Test");
+        }
+
+        // run the selected command
+        // command.run() //commented out for now
     }
 }
