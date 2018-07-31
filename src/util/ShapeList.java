@@ -12,7 +12,7 @@ public class ShapeList extends ArrayList<Shape> implements ISubject {
     @Override
     public boolean add(Shape e) {
         super.add(e);
-        this.notifyObservers();
+        notifyObservers();
         return true;
     }
 
