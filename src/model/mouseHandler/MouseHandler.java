@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import model.Shape;
 import model.StartAndEndPointMode;
-import model.commands.DrawCommand;
+import model.commands.CreateShapeCommand;
 import model.interfaces.ICommand;
 import util.Pair;
 import model.interfaces.IApplicationState;
@@ -25,18 +25,21 @@ public class MouseHandler extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent e) {
         this.start = new Pair(e.getX(), e.getY());
+        System.out.println();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         Pair end = new Pair(e.getX(), e.getY());
+        System.out.println();
 
         // this will create the commends
         ICommand command;
 
         if (appState.getActiveStartAndEndPointMode() == StartAndEndPointMode.DRAW) {
             // draw test
-            command = new DrawCommand(new Shape(start, end, appState.getCurrentConfiguration()), shapeList);
+            command = new CreateShapeCommand(new Shape(start, end, appState.getCurrentConfiguration()), shapeList);
+            // MOVE THIS OUT OF BRANCH ONCE BELOW ARE IMPLEMENTED
             try {
                 command.run();
             } catch (IOException e1) {

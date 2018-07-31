@@ -4,8 +4,8 @@ import model.persistence.ShapeConfiguration;
 import util.Pair;
 
 public class Shape {
-    private Pair start;
-    private Pair end;
+    public Pair start;
+    public Pair end;
     private ShapeColor primary;
     private ShapeColor secondary;
     private ShapeShadingType fill;
@@ -22,5 +22,39 @@ public class Shape {
 
     public ShapeType getShapeType() {
         return shape;
+    }
+
+    public int getX() {
+        return Math.min(start.getX(), end.getX());
+    }
+
+    public int getY() {
+        return Math.min(start.getY(), end.getY());
+    }
+
+    public int getWidth() {
+        return Math.abs(start.getX() - end.getX());
+    }
+
+    public int getHeight() {
+        return Math.abs(start.getY() - end.getY());
+    }
+
+    public int[] getXS() {
+        // only for triangle
+        int[] xs = new int[3];
+        xs[0] = Math.min(start.getX(), end.getX());
+        xs[1] = xs[0];
+        xs[2] = Math.max(start.getX(), end.getX());
+        return xs;
+    }
+
+    public int[] getYS() {
+        // only for triangle
+        int[] ys = new int[3];
+        ys[0] = Math.min(start.getY(), end.getY());
+        ys[2] = Math.max(start.getY(), end.getY());
+        ys[1] = ys[2];
+        return ys;
     }
 }

@@ -18,11 +18,11 @@ public class Pair {
     }
 
     public int getX() {
-        return x;
+        return x - 6;
     }
 
     public int getY() {
-        return y;
+        return y - 67;
     }
 
     @Override

@@ -6,11 +6,11 @@ import util.ShapeList;
 
 import java.io.IOException;
 
-public class DrawCommand implements ICommand {
+public class CreateShapeCommand implements ICommand {
     private Shape shape;
     private ShapeList shapeList;
 
-    public DrawCommand (Shape shape, ShapeList shapeList) {
+    public CreateShapeCommand(Shape shape, ShapeList shapeList) {
         this.shape = shape;
         this.shapeList = shapeList;
     }
@@ -18,9 +18,5 @@ public class DrawCommand implements ICommand {
     @Override
     public void run() throws IOException {
         shapeList.add(shape);
-        System.out.println(shapeList.size());
-        for (Shape s: shapeList) {
-            System.out.println(s.getShapeType());
-        }
     }
 }

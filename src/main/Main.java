@@ -4,6 +4,7 @@ import controller.IJPaintController;
 import controller.JPaintController;
 import model.dialogs.DialogProvider;
 import model.interfaces.IDialogProvider;
+import model.observers.ShapeDrawer;
 import model.persistence.ApplicationState;
 import model.mouseHandler.MouseHandler;
 import util.ShapeList;
@@ -22,8 +23,15 @@ public class Main {
         IJPaintController controller = new JPaintController(uiModule, appState);
         controller.setup();
 
+        // create shapelist and clickhandler
         ShapeList shapeList = new ShapeList();
         MouseHandler mouseHandler = new MouseHandler(appState, shapeList);
         ((GuiWindow) guiWindow).addMouseListener(mouseHandler);
+
+        // register observers with shapeList
+        // DRAWER probably needs a canvas passed
+        ShapeDrawer drawer = new ShapeDrawer(canvas);
+        shapeList.registerObservers(drawer);
+
     }
 }
