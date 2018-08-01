@@ -1,13 +1,14 @@
-package controller.mouseHandler;
+package controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+import model.commands.ICommandFactory;
 import model.shape.Shape;
 import model.shape.featureEnums.StartAndEndPointMode;
 import model.commands.CreateShapeCommand;
-import model.interfaces.ICommand;
+import model.commands.ICommand;
 import model.util.Pair;
 import model.interfaces.IApplicationState;
 import model.util.ShapeList;
@@ -38,7 +39,8 @@ public class MouseHandler extends MouseAdapter {
 
         if (appState.getActiveStartAndEndPointMode() == StartAndEndPointMode.DRAW) {
             // draw test
-            command = new CreateShapeCommand(new Shape(start, end, appState.getCurrentConfiguration()), shapeList);
+            //command = new CreateShapeCommand(new Shape(start, end, appState.getCurrentConfiguration()), shapeList);
+            command = ICommandFactory.createShapeCommand(start, end, appState.getCurrentConfiguration(), shapeList);
             // MOVE THIS OUT OF BRANCH ONCE BELOW ARE IMPLEMENTED
             try {
                 command.run();

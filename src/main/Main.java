@@ -4,7 +4,7 @@ import controller.IJPaintController;
 import controller.JPaintController;
 import model.observers.ShapeDrawer;
 import model.persistence.ApplicationState;
-import controller.mouseHandler.MouseHandler;
+import controller.MouseHandler;
 import model.util.ShapeList;
 import view.gui.Gui;
 import view.gui.GuiWindow;
