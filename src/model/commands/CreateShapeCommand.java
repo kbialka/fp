@@ -5,11 +5,11 @@ import model.util.ShapeList;
 
 import java.io.IOException;
 
-public class CreateShapeCommand implements ICommand {
+class CreateShapeCommand implements ICommand {
     private Shape shape;
     private ShapeList shapeList;
 
-    public CreateShapeCommand(Shape shape, ShapeList shapeList) {
+    CreateShapeCommand(Shape shape, ShapeList shapeList) {
         this.shape = shape;
         this.shapeList = shapeList;
     }

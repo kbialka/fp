@@ -15,12 +15,14 @@ public class Shape {
     private ShapeType shape;
 
     public Shape(Pair start, Pair end, ShapeConfiguration config) {
-        this.start = start;
-        this.end = end;
+        this.start = getStart(start, end);
+        this.end = getEnd(start, end);
         this.primary = config.getPrimary();
         this.secondary = config.getSecondary();
         this.fill = config.getFill();
         this.shape = config.getShape();
+        System.out.println("Start: " + this.start);
+        System.out.println("End: " + this.end);
     }
 
     public ShapeType getShapeType() {
@@ -28,36 +30,47 @@ public class Shape {
     }
 
     public int getX() {
-        return Math.min(start.getX(), end.getX());
+        return start.getX();
     }
 
     public int getY() {
-        return Math.min(start.getY(), end.getY());
+        return start.getY();
     }
 
     public int getWidth() {
-        return Math.abs(start.getX() - end.getX());
+        return end.getX() - start.getX();
     }
 
     public int getHeight() {
-        return Math.abs(start.getY() - end.getY());
+        return end.getY() - start.getY();
     }
 
     public int[] getXS() {
         // only for triangle
         int[] xs = new int[3];
-        xs[0] = Math.min(start.getX(), end.getX());
+        xs[0] = start.getX();
         xs[1] = xs[0];
-        xs[2] = Math.max(start.getX(), end.getX());
+        xs[2] = end.getX();
         return xs;
     }
 
     public int[] getYS() {
         // only for triangle
         int[] ys = new int[3];
-        ys[0] = Math.min(start.getY(), end.getY());
-        ys[2] = Math.max(start.getY(), end.getY());
+        ys[0] = start.getY();
+        ys[2] = end.getY();
         ys[1] = ys[2];
         return ys;
     }
+
+    private static Pair getStart(Pair p1, Pair p2) {
+        // returns top left coordinates of box
+        return new Pair((Math.min(p1.getX(), p2.getX()) - 6), (Math.min(p1.getY(), p2.getY())) - 67);
+    }
+
+    private static Pair getEnd(Pair p1, Pair p2) {
+        // returns top left coordinates of box
+        return new Pair((Math.max(p1.getX(), p2.getX()) - 6), (Math.max(p1.getY(), p2.getY())) - 67);
+    }
+
 }

@@ -9,14 +9,12 @@ public class Pair {
         this.y = y;
     }
 
-    // hard coded values so values align with mouse pointer
     public int getX() {
-        return x - 6;
+        return x;
     }
 
-    // hard coded values so values align with mouse pointer
     public int getY() {
-        return y - 67;
+        return y;
     }
 
     @Override

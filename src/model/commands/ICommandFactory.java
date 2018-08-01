@@ -8,8 +8,7 @@ import model.util.ShapeList;
 public class ICommandFactory {
     private ICommandFactory() {}
 
-    public static ICommand createShapeCommand(Pair start, Pair end,
-                                              ShapeConfiguration config, ShapeList shapeList) {
+    public static ICommand createShapeCommand(Pair start, Pair end, ShapeConfiguration config, ShapeList shapeList) {
         return new CreateShapeCommand(new Shape(start, end, config), shapeList);
     }
 }
