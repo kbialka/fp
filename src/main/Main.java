@@ -22,13 +22,14 @@ public class Main {
         controller.setup();
 
         // create shapelist and clickhandler
-        ShapeList shapeList = new ShapeList();
-        MouseHandler mouseHandler = new MouseHandler(appState, shapeList);
+        ShapeList masterShapeList = new ShapeList();
+        ShapeList selectedShapeList = new ShapeList();
+        MouseHandler mouseHandler = new MouseHandler(appState, masterShapeList, selectedShapeList);
         ((GuiWindow) guiWindow).addMouseListener(mouseHandler);
 
         // register observers with shapeList
         ShapeDrawer drawer = new ShapeDrawer(canvas);
-        shapeList.registerObservers(drawer);
+        masterShapeList.registerObservers(drawer);
 
     }
 }

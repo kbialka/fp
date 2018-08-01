@@ -15,14 +15,12 @@ public class Shape {
     private ShapeType shape;
 
     public Shape(Pair start, Pair end, ShapeConfiguration config) {
-        this.start = getStart(start, end);
-        this.end = getEnd(start, end);
+        this.start = start;
+        this.end = end;
         this.primary = config.getPrimary();
         this.secondary = config.getSecondary();
         this.fill = config.getFill();
         this.shape = config.getShape();
-        System.out.println("Start: " + this.start);
-        System.out.println("End: " + this.end);
     }
 
     public ShapeType getShapeType() {
@@ -62,15 +60,4 @@ public class Shape {
         ys[1] = ys[2];
         return ys;
     }
-
-    private static Pair getStart(Pair p1, Pair p2) {
-        // returns top left coordinates of box
-        return new Pair((Math.min(p1.getX(), p2.getX()) - 6), (Math.min(p1.getY(), p2.getY())) - 67);
-    }
-
-    private static Pair getEnd(Pair p1, Pair p2) {
-        // returns top left coordinates of box
-        return new Pair((Math.max(p1.getX(), p2.getX()) - 6), (Math.max(p1.getY(), p2.getY())) - 67);
-    }
-
 }

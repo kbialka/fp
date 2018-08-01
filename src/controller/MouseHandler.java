@@ -15,37 +15,45 @@ import model.util.ShapeList;
 public class MouseHandler extends MouseAdapter {
     private IApplicationState appState;
     private Pair start;
-    private ShapeList shapeList;
+    private ShapeList masterShapeList;
+    private ShapeList selectedShapeList;
 
-    public MouseHandler(IApplicationState appState, ShapeList shapeList) {
+    public MouseHandler(IApplicationState appState, ShapeList masterShapeList, ShapeList selectedShapeList) {
         this.appState = appState;
-        this.shapeList = shapeList;
+        this.masterShapeList = masterShapeList;
+        this.selectedShapeList = selectedShapeList;
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        this.start = new Pair(e.getX(), e.getY());
-        System.out.println(start);
+        // constants account for mouse pointer offset on GUI canvas
+        this.start = new Pair(e.getX() - 6, e.getY() - 67);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        Pair end = new Pair(e.getX(), e.getY());
-        System.out.println(end);
+        // constants account for mouse pointer offset on GUI canvas
+        Pair end = new Pair(e.getX() - 6, e.getY() - 67);
+
+        // start is top left, end is bottom right of canvas
+        Pair trueStart = getStart(start, end);
+        Pair trueEnd = getEnd(start, end);
 
         // this will create the commends
         ICommand command;
 
         if (appState.getActiveStartAndEndPointMode() == StartAndEndPointMode.DRAW) {
             // draw test
-            command = ICommandFactory.createShapeCommand(start, end, appState.getCurrentConfiguration(), shapeList);
+            command = ICommandFactory.createShapeCommand(trueStart, trueEnd,
+                    appState.getCurrentConfiguration(), masterShapeList);
             // MOVE THIS OUT OF BRANCH ONCE BELOW ARE IMPLEMENTED
             try {
                 command.run();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-        } else if (appState.getActiveStartAndEndPointMode() == StartAndEndPointMode.MOVE) {
+        } else if (appState.getActiveStartAndEndPointMode() == StartAndEndPointMode.SELECT) {
+            // command = ICommandFactory.createSelectCommand(trueStart, trueEnd, masterShapeList, selectedShapeList);
             System.out.println("Move test");
         } else {
             System.out.println("Select Test");
@@ -53,5 +61,15 @@ public class MouseHandler extends MouseAdapter {
 
         // run the selected command
         // command.run() //commented out for now
+    }
+
+    private static Pair getStart(Pair p1, Pair p2) {
+        // returns top left coordinates of box
+        return new Pair((Math.min(p1.getX(), p2.getX())), (Math.min(p1.getY(), p2.getY())));
+    }
+
+    private static Pair getEnd(Pair p1, Pair p2) {
+        // returns top left coordinates of box
+        return new Pair((Math.max(p1.getX(), p2.getX())), (Math.max(p1.getY(), p2.getY())));
     }
 }
