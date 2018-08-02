@@ -17,6 +17,13 @@ public class ShapeList extends ArrayList<Shape> implements ISubject {
     }
 
     @Override
+    public Shape set(int index, Shape shape) {
+        Shape ret = super.set(index, shape);
+        notifyObservers();
+        return ret;
+    }
+
+    @Override
     public void registerObservers(IObserver observer) {
         observers.add(observer);
     }

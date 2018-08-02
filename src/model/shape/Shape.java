@@ -13,6 +13,7 @@ public class Shape {
     private ShapeColor secondary;
     private ShapeShadingType fill;
     private ShapeType shape;
+    private ShapeConfiguration config;
 
     public Shape(Pair start, Pair end, ShapeConfiguration config) {
         this.start = start;
@@ -21,11 +22,14 @@ public class Shape {
         this.secondary = config.getSecondary();
         this.fill = config.getFill();
         this.shape = config.getShape();
+        this.config = config;
     }
 
     public ShapeType getShapeType() {
         return shape;
     }
+
+    public ShapeConfiguration getShapeConfiguration() { return config; }
 
     public int getX() {
         return start.getX();

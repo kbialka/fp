@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 import model.commands.ICommandFactory;
-import model.shape.Shape;
 import model.shape.featureEnums.StartAndEndPointMode;
 import model.commands.ICommand;
 import model.util.Pair;
@@ -41,32 +40,26 @@ public class MouseHandler extends MouseAdapter {
 
         // this will create the commends
         ICommand command;
+        StartAndEndPointMode currentMode = appState.getActiveStartAndEndPointMode();
 
-        if (appState.getActiveStartAndEndPointMode() == StartAndEndPointMode.DRAW) {
-            // draw test
-            command = ICommandFactory.createShapeCommand(trueStart, trueEnd,
-                    appState.getCurrentConfiguration(), masterShapeList);
-            // MOVE THIS OUT OF BRANCH ONCE BELOW ARE IMPLEMENTED
-            try {
-                command.run();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        } else if (appState.getActiveStartAndEndPointMode() == StartAndEndPointMode.SELECT) {
-            command = ICommandFactory.createSelectCommand(trueStart, trueEnd, masterShapeList, selectedShapeList);
-            try {
-                command.run();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-
-        } else {
-            // command = ICommandFactory.createMoveCommand(trueStart, trueEnd, masterShapeLIst, selectedShapeList);
-            System.out.println("Select Test");
+        switch (currentMode) {
+            case DRAW:
+                command = ICommandFactory.createShape(trueStart, trueEnd, appState.getCurrentConfiguration(), masterShapeList);
+                break;
+            case SELECT:
+                command = ICommandFactory.selectShape(trueStart, trueEnd, masterShapeList, selectedShapeList);
+                break;
+            default:
+                command = ICommandFactory.moveShape(trueStart, trueEnd, masterShapeList, selectedShapeList);
+                break;
         }
 
         // run the selected command
-        // command.run() //commented out for now
+        try {
+            command.run(); //commented out for now
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
     private static Pair getStart(Pair p1, Pair p2) {

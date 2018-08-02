@@ -13,7 +13,7 @@ public class SelectShapeCommand implements ICommand {
     private ShapeList masterShapeList;
     private ShapeList selectedShapeList;
 
-    public SelectShapeCommand(Pair start, Pair end, ShapeList masterShapeList, ShapeList selectedShapeList) {
+    SelectShapeCommand(Pair start, Pair end, ShapeList masterShapeList, ShapeList selectedShapeList) {
         this.start = start;
         this.end = end;
         this.masterShapeList = masterShapeList;
