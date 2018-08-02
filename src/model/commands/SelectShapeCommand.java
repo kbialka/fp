@@ -1,5 +1,7 @@
 package model.commands;
 
+import model.shape.Shape;
+import model.util.CollisionDetector;
 import model.util.Pair;
 import model.util.ShapeList;
 
@@ -16,10 +18,15 @@ public class SelectShapeCommand implements ICommand {
         this.end = end;
         this.masterShapeList = masterShapeList;
         this.selectedShapeList = selectedShapeList;
+        this.selectedShapeList.clear();
     }
 
     @Override
     public void run() throws IOException {
-
+        for(Shape shape:masterShapeList) {
+            if (CollisionDetector.detect(start, end, shape)) {
+                selectedShapeList.add(shape);
+            }
+        }
     }
 }

@@ -53,9 +53,15 @@ public class MouseHandler extends MouseAdapter {
                 e1.printStackTrace();
             }
         } else if (appState.getActiveStartAndEndPointMode() == StartAndEndPointMode.SELECT) {
-            // command = ICommandFactory.createSelectCommand(trueStart, trueEnd, masterShapeList, selectedShapeList);
-            System.out.println("Move test");
+            command = ICommandFactory.createSelectCommand(trueStart, trueEnd, masterShapeList, selectedShapeList);
+            try {
+                command.run();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
         } else {
+            // command = ICommandFactory.createMoveCommand(trueStart, trueEnd, masterShapeLIst, selectedShapeList);
             System.out.println("Select Test");
         }
 
