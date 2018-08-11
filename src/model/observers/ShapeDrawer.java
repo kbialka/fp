@@ -1,8 +1,9 @@
 package model.observers;
 
 import model.shape.Shape;
+import model.shape.ShapeColorMap;
+import model.shape.featureEnums.ShapeShadingType;
 import model.shape.featureEnums.ShapeType;
-import model.interfaces.IObserver;
 import model.util.ShapeList;
 import view.gui.PaintCanvas;
 
@@ -17,20 +18,76 @@ public class ShapeDrawer implements IObserver {
 
     @Override
     public void update(ShapeList shapeList) {
+
+        Graphics2D graphic = canvas.getGraphics2D();
+        Rectangle border = canvas.getBounds();
+        canvas.paintImmediately(border);
+
         for (Shape shape : shapeList) {
-            Graphics2D graphic = canvas.getGraphics2D();
             ShapeType type = shape.getShapeType();
+            ShapeShadingType fill = shape.getFill();
 
             switch (type) {
                 case ELLIPSE:
-                    graphic.drawOval(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+                    switch (fill) {
+                        case OUTLINE:
+                            graphic.setColor(ShapeColorMap.get(shape.getPrimary()));
+                            graphic.drawOval(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+                            break;
+                        case FILLED_IN:
+                            graphic.setColor(ShapeColorMap.get(shape.getPrimary()));
+                            graphic.fillOval(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+                            break;
+                        default:
+                            graphic.setColor(ShapeColorMap.get(shape.getSecondary()));
+                            graphic.fillOval(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+
+                            graphic.setColor(ShapeColorMap.get(shape.getPrimary()));
+                            graphic.drawOval(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+                            break;
+                    }
                     break;
+
                 case RECTANGLE:
-                    graphic.drawRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+                    switch (fill) {
+                        case OUTLINE:
+                            graphic.setColor(ShapeColorMap.get(shape.getPrimary()));
+                            graphic.drawRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+                            break;
+                        case FILLED_IN:
+                            graphic.setColor(ShapeColorMap.get(shape.getPrimary()));
+                            graphic.fillRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+                            break;
+                        default:
+                            graphic.setColor(ShapeColorMap.get(shape.getSecondary()));
+                            graphic.fillRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+
+                            graphic.setColor(ShapeColorMap.get(shape.getPrimary()));
+                            graphic.drawRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+                            break;
+                    }
                     break;
+
                 default:
-                    graphic.drawPolygon(shape.getXS(), shape.getYS(), 3);
+                    switch (fill) {
+                        case OUTLINE:
+                            graphic.setColor(ShapeColorMap.get(shape.getPrimary()));
+                            graphic.drawPolygon(shape.getXS(), shape.getYS(), 3);
+                            break;
+                        case FILLED_IN:
+                            graphic.setColor(ShapeColorMap.get(shape.getPrimary()));
+                            graphic.fillPolygon(shape.getXS(), shape.getYS(), 3);
+                            break;
+                        default:
+                            graphic.setColor(ShapeColorMap.get(shape.getSecondary()));
+                            graphic.fillPolygon(shape.getXS(), shape.getYS(), 3);
+
+                            graphic.setColor(ShapeColorMap.get(shape.getPrimary()));
+                            graphic.drawPolygon(shape.getXS(), shape.getYS(), 3);
+                            break;
+                    }
                     break;
+
             }
         }
     }

@@ -1,8 +1,8 @@
 package model.util;
 
 import model.shape.Shape;
-import model.interfaces.IObserver;
-import model.interfaces.ISubject;
+import model.observers.IObserver;
+import model.observers.ISubject;
 import java.util.ArrayList;
 import java.util.List;
 

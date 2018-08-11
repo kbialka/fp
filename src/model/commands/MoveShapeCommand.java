@@ -7,10 +7,10 @@ import model.util.ShapeList;
 import java.io.IOException;
 
 public class MoveShapeCommand implements ICommand {
-    Pair start;
-    Pair end;
-    ShapeList master;
-    ShapeList selected;
+    private Pair start;
+    private Pair end;
+    private ShapeList master;
+    private ShapeList selected;
 
     MoveShapeCommand(Pair start, Pair end, ShapeList master, ShapeList selected) {
         this.start = start;
@@ -21,10 +21,15 @@ public class MoveShapeCommand implements ICommand {
 
     @Override
     public void run() throws IOException {
+        int selectedIdx = 0;
         for (Shape shape : selected) {
-            int idx = master.indexOf(shape);
-            Shape newShape = new Shape(start, end, shape.getShapeConfiguration());
-            master.set(idx, newShape);
+            int masterIdx = master.indexOf(shape);
+            // to maintain existing size/shape
+            Pair newEnd = new Pair(start.getX()+shape.getWidth(), start.getY()+shape.getHeight());
+            Shape newShape = new Shape(start, newEnd, shape.getShapeConfiguration());
+            master.set(masterIdx, newShape);
+            selected.set(selectedIdx, newShape);
+            selectedIdx++;
         }
     }
 }

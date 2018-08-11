@@ -47,6 +47,12 @@ public class Shape {
         return end.getY() - start.getY();
     }
 
+    public ShapeColor getPrimary() { return primary; }
+
+    public ShapeColor getSecondary() { return secondary; }
+
+    public ShapeShadingType getFill() { return fill; }
+
     public int[] getXS() {
         // only for triangle
         int[] xs = new int[3];

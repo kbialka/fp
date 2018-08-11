@@ -1,4 +1,4 @@
-package model.interfaces;
+package model.observers;
 
 import model.util.ShapeList;
 

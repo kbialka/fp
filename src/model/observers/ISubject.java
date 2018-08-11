@@ -1,4 +1,4 @@
-package model.interfaces;
+package model.observers;
 
 public interface ISubject {
     void registerObservers(IObserver observer);
