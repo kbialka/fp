@@ -1,8 +1,7 @@
 package controller;
 
+import model.commands.ICommand;
 import model.commands.ICommandFactory;
-import model.commands.RedoCommand;
-import model.commands.UndoCommand;
 import model.interfaces.IApplicationState;
 import view.EventName;
 import view.interfaces.IUiModule;
@@ -29,8 +28,7 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_START_POINT_ENDPOINT_MODE, () -> applicationState.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.UNDO, () -> ICommandFactory.undo());
         uiModule.addEvent(EventName.REDO, () -> ICommandFactory.redo());
-
-        uiModule.addEvent(EventName.COPY, () -> System.out.println("MOTHERFUCKING COPY (Run command...)"));
+        uiModule.addEvent(EventName.COPY, () -> ICommandFactory.copy());
 
     }
 }

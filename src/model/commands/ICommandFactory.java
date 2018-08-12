@@ -27,4 +27,8 @@ public class ICommandFactory {
     public static void redo() {
         new RedoCommand().run();
     }
+
+    public static void copy() {
+        new CopyCommand().run();
+    }
 }
