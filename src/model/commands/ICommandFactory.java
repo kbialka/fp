@@ -35,4 +35,8 @@ public class ICommandFactory {
     public static void paste() {
         new PasteCommand().run();
     }
+
+    public static void delete() {
+        new DeleteCommand().run();
+    }
 }

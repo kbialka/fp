@@ -16,7 +16,6 @@ public class ShapeList extends ArrayList<Shape> implements ISubject {
         return true;
     }
 
-
     public boolean remove(Shape shape) {
         super.remove(shape);
         notifyObservers();

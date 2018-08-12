@@ -1,6 +1,5 @@
 package controller;
 
-import model.commands.ICommand;
 import model.commands.ICommandFactory;
 import model.interfaces.IApplicationState;
 import view.EventName;
@@ -30,5 +29,6 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.REDO, () -> ICommandFactory.redo());
         uiModule.addEvent(EventName.COPY, () -> ICommandFactory.copy());
         uiModule.addEvent(EventName.PASTE, () -> ICommandFactory.paste());
+        uiModule.addEvent(EventName.DELETE, () -> ICommandFactory.delete());
     }
 }
