@@ -39,6 +39,10 @@ public class Shape {
         return start.getY();
     }
 
+    public Pair getStart() { return start; }
+
+    public Pair getEnd() { return end; }
+
     public int getWidth() {
         return end.getX() - start.getX();
     }
