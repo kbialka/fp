@@ -1,0 +1,8 @@
+package model.commands;
+
+class RedoCommand implements ICommand {
+    @Override
+    public void run() {
+        CommandHistory.redo();
+    }
+}

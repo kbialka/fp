@@ -4,8 +4,9 @@ import controller.IJPaintController;
 import controller.JPaintController;
 import model.observers.ShapeDrawer;
 import model.persistence.ApplicationState;
-import controller.mouseHandler.MouseHandler;
+import controller.MouseHandler;
 import model.util.ShapeList;
+import model.util.ShapeListManager;
 import view.gui.Gui;
 import view.gui.GuiWindow;
 import view.gui.PaintCanvas;
@@ -22,13 +23,14 @@ public class Main {
         controller.setup();
 
         // create shapelist and clickhandler
-        ShapeList shapeList = new ShapeList();
-        MouseHandler mouseHandler = new MouseHandler(appState, shapeList);
+        ShapeList masterShapeList = ShapeListManager.getMaster();
+        ShapeList selectedShapeList = ShapeListManager.getSelected();
+        MouseHandler mouseHandler = new MouseHandler(appState, masterShapeList, selectedShapeList);
         ((GuiWindow) guiWindow).addMouseListener(mouseHandler);
 
         // register observers with shapeList
         ShapeDrawer drawer = new ShapeDrawer(canvas);
-        shapeList.registerObservers(drawer);
+        masterShapeList.registerObservers(drawer);
 
     }
 }

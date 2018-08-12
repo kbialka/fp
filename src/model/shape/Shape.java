@@ -13,6 +13,7 @@ public class Shape {
     private ShapeColor secondary;
     private ShapeShadingType fill;
     private ShapeType shape;
+    private ShapeConfiguration config;
 
     public Shape(Pair start, Pair end, ShapeConfiguration config) {
         this.start = start;
@@ -21,42 +22,55 @@ public class Shape {
         this.secondary = config.getSecondary();
         this.fill = config.getFill();
         this.shape = config.getShape();
+        this.config = config;
     }
 
     public ShapeType getShapeType() {
         return shape;
     }
 
+    public ShapeConfiguration getShapeConfiguration() { return config; }
+
     public int getX() {
-        return Math.min(start.getX(), end.getX());
+        return start.getX();
     }
 
     public int getY() {
-        return Math.min(start.getY(), end.getY());
+        return start.getY();
     }
 
+    public Pair getStart() { return start; }
+
+    public Pair getEnd() { return end; }
+
     public int getWidth() {
-        return Math.abs(start.getX() - end.getX());
+        return end.getX() - start.getX();
     }
 
     public int getHeight() {
-        return Math.abs(start.getY() - end.getY());
+        return end.getY() - start.getY();
     }
+
+    public ShapeColor getPrimary() { return primary; }
+
+    public ShapeColor getSecondary() { return secondary; }
+
+    public ShapeShadingType getFill() { return fill; }
 
     public int[] getXS() {
         // only for triangle
         int[] xs = new int[3];
-        xs[0] = Math.min(start.getX(), end.getX());
+        xs[0] = start.getX();
         xs[1] = xs[0];
-        xs[2] = Math.max(start.getX(), end.getX());
+        xs[2] = end.getX();
         return xs;
     }
 
     public int[] getYS() {
         // only for triangle
         int[] ys = new int[3];
-        ys[0] = Math.min(start.getY(), end.getY());
-        ys[2] = Math.max(start.getY(), end.getY());
+        ys[0] = start.getY();
+        ys[2] = end.getY();
         ys[1] = ys[2];
         return ys;
     }
