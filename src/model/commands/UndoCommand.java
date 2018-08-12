@@ -1,6 +1,6 @@
 package model.commands;
 
-public class UndoCommand implements ICommand {
+class UndoCommand implements ICommand {
     @Override
     public void run() {
         CommandHistory.undo();

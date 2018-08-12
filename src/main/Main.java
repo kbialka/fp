@@ -6,6 +6,7 @@ import model.observers.ShapeDrawer;
 import model.persistence.ApplicationState;
 import controller.MouseHandler;
 import model.util.ShapeList;
+import model.util.ShapeListManager;
 import view.gui.Gui;
 import view.gui.GuiWindow;
 import view.gui.PaintCanvas;
@@ -22,8 +23,8 @@ public class Main {
         controller.setup();
 
         // create shapelist and clickhandler
-        ShapeList masterShapeList = new ShapeList();
-        ShapeList selectedShapeList = new ShapeList();
+        ShapeList masterShapeList = ShapeListManager.getMaster();
+        ShapeList selectedShapeList = ShapeListManager.getSelected();
         MouseHandler mouseHandler = new MouseHandler(appState, masterShapeList, selectedShapeList);
         ((GuiWindow) guiWindow).addMouseListener(mouseHandler);
 

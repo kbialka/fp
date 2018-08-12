@@ -19,4 +19,12 @@ public class ICommandFactory {
     public static ICommand moveShape(Pair start, Pair end, ShapeList master, ShapeList selected) {
         return new MoveShapeCommand(start, end, master, selected);
     }
+
+    public static void undo() {
+        new UndoCommand().run();
+    }
+
+    public static void redo() {
+        new RedoCommand().run();
+    }
 }
