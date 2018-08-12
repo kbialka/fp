@@ -20,6 +20,5 @@ class CopyCommand implements ICommand {
             Shape copiedShape = new Shape(shape.getStart(), shape.getEnd(), shape.getShapeConfiguration());
             clipboard.add(copiedShape);
         }
-
     }
 }

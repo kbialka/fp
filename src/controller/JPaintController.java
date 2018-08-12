@@ -29,6 +29,6 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.UNDO, () -> ICommandFactory.undo());
         uiModule.addEvent(EventName.REDO, () -> ICommandFactory.redo());
         uiModule.addEvent(EventName.COPY, () -> ICommandFactory.copy());
-
+        uiModule.addEvent(EventName.PASTE, () -> ICommandFactory.paste());
     }
 }

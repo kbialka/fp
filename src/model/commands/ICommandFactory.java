@@ -31,4 +31,8 @@ public class ICommandFactory {
     public static void copy() {
         new CopyCommand().run();
     }
+
+    public static void paste() {
+        new PasteCommand().run();
+    }
 }
